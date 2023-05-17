@@ -1,0 +1,11 @@
+<form (ngSubmit)="registerUser()" #registrationForm="ngForm">
+  <div>
+    <label for="name">Imię:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="user.name" required>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
+  </div>
+  <button type="submit">Zarejestruj</button>
+</form>
