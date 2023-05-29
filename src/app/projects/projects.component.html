@@ -1,1 +1,32 @@
-<p>projects works!</p>
+<div>
+  <div class="project" *ngFor="let project of projects">
+    <h2>{{ project.name }}</h2>
+    <p>{{ project.description }}</p>
+    <button (click)="openForm(project)">Dodaj funkcjonalność</button>
+    <ul>
+      <li *ngFor="let functionality of project.functionalities">
+        {{ functionality.title }}
+        <p>{{functionality.state}}</p>
+        <button (click)="viewFunctionality(project, functionality)">Szczegóły</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="form-popup" *ngIf="showForm">
+  <h2>Nowa funkcjonalność</h2>
+  <label for="functionality-title">Tytuł:</label>
+  <input type="text" id="functionality-title" [(ngModel)]="newFunctionality.title">
+  <label for="functionality-description">Opis:</label>
+  <input type="text" id="functionality-state" [(ngModel)]="newFunctionality.state">
+  <label for="functionality-state">State:</label>
+  <input type="text" id="functionality-owner" [(ngModel)]="newFunctionality.owner">
+  <label for="functionality-owner">Owner:</label>
+  <input type="text" id="functionality-priority" [(ngModel)]="newFunctionality.priority">
+  <label for="functionality-priority">Priority:</label>
+  <textarea id="functionality-description" [(ngModel)]="newFunctionality.description"></textarea>
+  <button (click)="addFunctionality()">Dodaj</button>
+  <button (click)="closeForm()">Anuluj</button>
+</div>
+
+

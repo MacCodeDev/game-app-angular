@@ -16,13 +16,17 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
 import { ProjectsComponent } from './projects/projects.component';
 import { AuthGuard } from './guards/auth.guard';
+import { FunctionalitiesComponent } from './functionalities/functionalities.component';
+import { ProjectTaskComponent } from './project-task/project-task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    FunctionalitiesComponent,
+    ProjectTaskComponent
   ],
   imports: [
     BrowserModule,

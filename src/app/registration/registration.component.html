@@ -1,11 +1,20 @@
-<form (ngSubmit)="registerUser()" #registrationForm="ngForm">
+<h2>Functionalities</h2>
+<form (ngSubmit)="saveFunctionality()">
   <div>
-    <label for="name">Imię:</label>
-    <input type="text" id="name" name="name" [(ngModel)]="user.name" required>
+    <label>Name:</label>
+    <input type="text" [(ngModel)]="name" name="name" required>
   </div>
   <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
+    <label>Description:</label>
+    <textarea [(ngModel)]="description" name="description" required></textarea>
   </div>
-  <button type="submit">Zarejestruj</button>
+  <button type="submit">{{ editMode ? 'Save Changes' : 'Add Functionality' }}</button>
 </form>
+<ul>
+  <li *ngFor="let functionality of functionalities">
+    {{ functionality.name }}
+    <button (click)="deleteFunctionality(functionality.id)">Delete</button>
+    <button (click)="editFunctionality(functionality)">Edit</button>
+    <button (click)="showTasks(functionality)">Show Tasks</button>
+  </li>
+</ul>
