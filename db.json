@@ -1,0 +1,33 @@
+{
+  "features": [
+    {
+      "id": 1,
+      "name": "Funkcjonalność 1",
+      "description": "Opis funkcjonalności 1"
+    },
+    {
+      "id": 2,
+      "name": "Funkcjonalność 2",
+      "description": "Opis funkcjonalności 2"
+    },
+    {
+      "id": 3,
+      "name": "Funkcjonalność 3",
+      "description": "Opis funkcjonalności 3"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "idFeature": 1,
+      "name": "Test 1",
+      "description": "Elo elo"
+    },
+    {
+      "id": 2,
+      "idFeature": 1,
+      "name": "Test 2",
+      "description": "Elo elo2"
+    }
+  ]
+}
