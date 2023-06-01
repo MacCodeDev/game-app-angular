@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, throwError } from 'rxjs';
+import {Observable, of, switchMap, tap, throwError} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import {response} from "express";
 
 //install json server: npm install -g json-server
 //run json server: json-server --watch db.json
@@ -13,7 +15,7 @@ import { map } from 'rxjs/operators';
 export class ProjectAppService {
   private apiUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
   getFeatures(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/features`)
@@ -50,6 +52,23 @@ export class ProjectAppService {
   getTasksForFeature(idFeature: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/tasks`).pipe(
       map((tasks: any) => tasks.filter((task: any) => task.idFeature === idFeature))
+    );
+  }
+
+  getTaskForFeature(idFeature: number, id: number): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}/tasks/${id}`).pipe(
+      switchMap((response: any[]) => {
+        if (response != null) {
+          return of(response); // Przekazanie response dalej
+        } else {
+          this.router.navigate(['/projects']);
+          return this.handleError('Brak danych');
+        }
+      }),
+      catchError((error: any) => {
+        this.router.navigate(['/projects']);
+        return this.handleError(error);
+      })
     );
   }
 

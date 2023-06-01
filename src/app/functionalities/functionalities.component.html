@@ -8,5 +8,6 @@
   <li *ngFor="let task of tasks">
     <h3>{{ task.name }}</h3>
     <p>{{ task.description }}</p>
+    <a [routerLink]="['/projects/functionalities/', feature.id,'task', task.id]">Szczegóły</a>
   </li>
 </ul>

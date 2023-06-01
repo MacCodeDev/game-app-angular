@@ -14,6 +14,11 @@
       "id": 3,
       "name": "Funkcjonalność 3",
       "description": "Opis funkcjonalności 3"
+    },
+    {
+      "name": "ghgfh",
+      "description": "yufuy",
+      "id": 4
     }
   ],
   "tasks": [
@@ -25,7 +30,7 @@
     },
     {
       "id": 2,
-      "idFeature": 1,
+      "idFeature": 2,
       "name": "Test 2",
       "description": "Elo elo2"
     }
