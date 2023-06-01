@@ -3,22 +3,16 @@
     {
       "id": 1,
       "name": "Funkcjonalność 1",
-      "description": "Opis funkcjonalności 1"
+      "description": "Opis funkcjonalności 1",
+      "priority": "Wysoki",
+      "status": "Todo"
     },
     {
-      "id": 2,
-      "name": "Funkcjonalność 2",
-      "description": "Opis funkcjonalności 2"
-    },
-    {
-      "id": 3,
-      "name": "Funkcjonalność 3",
-      "description": "Opis funkcjonalności 3"
-    },
-    {
-      "name": "ghgfh",
-      "description": "yufuy",
-      "id": 4
+      "priority": "Wysoki",
+      "status": "Doing",
+      "description": "fsdfsdfdsf",
+      "name": "sdasfasfas",
+      "id": 2
     }
   ],
   "tasks": [
@@ -26,13 +20,10 @@
       "id": 1,
       "idFeature": 1,
       "name": "Test 1",
-      "description": "Elo elo"
-    },
-    {
-      "id": 2,
-      "idFeature": 2,
-      "name": "Test 2",
-      "description": "Elo elo2"
+      "description": "Elo elo",
+      "priority": "Niski",
+      "doneDate": "03/06/2023",
+      "createData": "01/06/2023"
     }
   ]
 }

@@ -10,7 +10,7 @@
 
 <h2>Add New Feature</h2>
 
-<form (submit)="addNewFeature()">
+<form (submit)="addFeature()">
   <label>
     Name:
     <input type="text" [(ngModel)]="newFeature.name" name="name" required>
@@ -19,6 +19,24 @@
   <label>
     Description:
     <textarea [(ngModel)]="newFeature.description" name="description" required></textarea>
+  </label>
+  <br>
+  <label>
+    Priority:
+    <select [(ngModel)]="newFeature.priority" name="priority" readonly required>
+      <option value="Niski">Niski</option>
+      <option value="Średni">Średni</option>
+      <option value="Wysoki">Wysoki</option>
+    </select>
+  </label>
+  <br>
+  <label>
+    Status:
+    <select [(ngModel)]="newFeature.status" name="status" readonly required>
+      <option value="ToDo">ToDo</option>
+      <option value="Doing">Doing</option>
+      <option value="Done">Done</option>
+    </select>
   </label>
   <br>
   <button type="submit">Add</button>

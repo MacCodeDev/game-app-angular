@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import {Observable, of, switchMap, tap, throwError} from 'rxjs';
+import {Observable, of, switchMap, throwError} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import {response} from "express";
 
 //install json server: npm install -g json-server
 //run json server: json-server --watch db.json
@@ -17,6 +16,7 @@ export class ProjectAppService {
 
   constructor(private http: HttpClient,private router: Router) { }
 
+  //Features services
   getFeatures(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/features`)
       .pipe(catchError(this.handleError));
@@ -44,11 +44,8 @@ export class ProjectAppService {
       .pipe(catchError(this.handleError));
   }
 
-  private handleError(error: any) {
-    console.error('Wystąpił błąd:', error);
-    return throwError('Wystąpił błąd. Spróbuj ponownie.');
-  }
 
+  //Task Services
   getTasksForFeature(idFeature: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/tasks`).pipe(
       map((tasks: any) => tasks.filter((task: any) => task.idFeature === idFeature))
@@ -59,7 +56,7 @@ export class ProjectAppService {
     return this.http.get<any[]>(`${this.apiUrl}/tasks/${id}`).pipe(
       switchMap((response: any[]) => {
         if (response != null) {
-          return of(response); // Przekazanie response dalej
+          return of(response);
         } else {
           this.router.navigate(['/projects']);
           return this.handleError('Brak danych');
@@ -72,4 +69,16 @@ export class ProjectAppService {
     );
   }
 
+  createTask(task: any): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${this.apiUrl}/tasks`, task, { headers })
+      .pipe(catchError(this.handleError));
+  }
+
+
+  //Error Handler
+  private handleError(error: any) {
+    console.error('Wystąpił błąd:', error);
+    return throwError('Wystąpił błąd. Spróbuj ponownie.');
+  }
 }

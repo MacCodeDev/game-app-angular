@@ -11,7 +11,10 @@ export class ProjectsComponent implements OnInit{
   features: any[] = [];
   newFeature: any = {};
 
-  constructor(private projectService: ProjectAppService) { }
+  constructor(
+    private projectService: ProjectAppService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.getFeatures();
@@ -21,11 +24,11 @@ export class ProjectsComponent implements OnInit{
     this.projectService.getFeatures()
       .subscribe((response: any) => {
         this.features = response;
-        console.log(response);
+        //console.log(response);
       });
   }
 
-  addNewFeature(): void {
+  addFeature(): void {
     this.projectService.createFeature(this.newFeature)
       .subscribe((response: any) => {
         this.features.push(response);

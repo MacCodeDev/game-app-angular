@@ -11,3 +11,47 @@
     <a [routerLink]="['/projects/functionalities/', feature.id,'task', task.id]">Szczegóły</a>
   </li>
 </ul>
+
+<h2>Add New Task</h2>
+
+<form (submit)="createTask()">
+  <label>
+    Name:
+    <input type="text" [(ngModel)]="newTask.name" name="name" required>
+  </label>
+  <br>
+  <label>
+    Description:
+    <textarea [(ngModel)]="newTask.description" name="description" required></textarea>
+  </label>
+  <br>
+  <label>
+    Priority:
+    <select [(ngModel)]="newTask.priority" name="priority" readonly required>
+      <option value="Niski">Niski</option>
+      <option value="Średni">Średni</option>
+      <option value="Wysoki">Wysoki</option>
+    </select>
+  </label>
+  <br>
+  <label>
+    Planowana data ukończenia:
+    <input type="date" [(ngModel)]="newTask.doneDate" name="doneDate"  required>
+  </label>
+  <br>
+  <label>
+    Data utworzenia:
+    <input type="date" [(ngModel)]="newTask.createDate" name="doneDate"  required>
+  </label>
+  <br>
+  <label>
+    Status:
+    <select [(ngModel)]="newTask.status" name="status" readonly required>
+      <option value="ToDo">ToDo</option>
+      <option value="Doing">Doing</option>
+      <option value="Done">Done</option>
+    </select>
+  </label>
+  <br>
+  <button type="submit">Add</button>
+</form>

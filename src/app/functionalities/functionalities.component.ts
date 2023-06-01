@@ -10,6 +10,8 @@ import { ProjectAppService } from "../project-app.service";
 export class FunctionalitiesComponent implements OnInit {
   feature: any;
   tasks: any[]=[];
+  newTask: any = {};
+  featureID: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,6 +25,7 @@ export class FunctionalitiesComponent implements OnInit {
 
   getFeatureDetails(): void {
     const id = Number(this.route.snapshot.paramMap.get('functionalityId'));
+    this.featureID = id;
     this.projectService.getFeature(id)
       .subscribe((response: any) => {
         this.feature = response;
@@ -35,6 +38,15 @@ export class FunctionalitiesComponent implements OnInit {
       .subscribe((response: any) => {
         this.tasks = response;
         console.log(response);
+      });
+  }
+
+  createTask(): void {
+    this.newTask.idFeature = this.featureID
+    this.projectService.createTask(this.newTask)
+      .subscribe((response: any) => {
+        this.tasks.push(response);
+        this.newTask = {};
       });
   }
 }
