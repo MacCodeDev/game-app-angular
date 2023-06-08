@@ -9,6 +9,7 @@
     <h3>{{ task.name }}</h3>
     <p>{{ task.description }}</p>
     <a [routerLink]="['/projects/functionalities/', feature.id,'task', task.id]">Szczegóły</a>
+    <button (click)="deleteTask(task.id)"> Delete </button>
   </li>
 </ul>
 

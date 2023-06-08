@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import {Observable, of, switchMap, throwError} from 'rxjs';
+import {Observable, of, switchMap, throwError, forkJoin} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+
 
 //install json server: npm install -g json-server
 //run json server: json-server --watch db.json
@@ -52,7 +53,7 @@ export class ProjectAppService {
     );
   }
 
-  getTaskForFeature(idFeature: number, id: number): Observable<any> {
+  async getTaskForFeature(idFeature: number, id: number): Promise<Observable<any>> {
     return this.http.get<any[]>(`${this.apiUrl}/tasks/${id}`).pipe(
       switchMap((response: any[]) => {
         if (response != null) {
@@ -72,6 +73,32 @@ export class ProjectAppService {
   createTask(task: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(`${this.apiUrl}/tasks`, task, { headers })
+      .pipe(catchError(this.handleError));
+  }
+
+  updateTask(id: number, task: any): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put<any>(`${this.apiUrl}/tasks/${id}`, task, { headers })
+      .pipe(catchError(this.handleError));
+  }
+
+  updateTaskStatus(taskId: number, newStatus: string): Observable<any> {
+    const url = `${this.apiUrl}/tasks/${taskId}`;
+    return this.http.get<any>(url).pipe(map((response) => {
+      const updatedTask = { ...response, status: newStatus}
+      console.log(newStatus)
+      //return this.http.put(url,updatedTask);
+      return updatedTask
+    }),
+      map((res) => {
+        this.http.put(url,res).subscribe();
+      })
+    );
+  }
+
+
+  deleteTask(task: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/tasks/${task}`)
       .pipe(catchError(this.handleError));
   }
 

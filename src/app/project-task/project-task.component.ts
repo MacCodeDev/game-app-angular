@@ -21,12 +21,12 @@ export class ProjectTaskComponent implements OnInit {
     await this.getTask();
   }
 
-  getTask(): void {
+  async getTask(): Promise<void> {
     const functionalityId = Number(this.route.snapshot.paramMap.get('functionalityId'));
     console.log(functionalityId);
     const taskId = Number(this.route.snapshot.paramMap.get('taskId'));
     console.log(taskId);
-    this.projectService.getTaskForFeature(functionalityId,taskId)
+    await (await this.projectService.getTaskForFeature(functionalityId, taskId))
       .subscribe((response: any) => {
         this.task = response;
         if( this.task.idFeature !== functionalityId){
@@ -34,4 +34,10 @@ export class ProjectTaskComponent implements OnInit {
         }
       });
   }
+
+  updateStatusTask(id: number, newStatus: string){
+    this.projectService.updateTaskStatus(id,newStatus).subscribe(
+    )
+  }
 }
+

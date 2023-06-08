@@ -32,13 +32,25 @@ export class FunctionalitiesComponent implements OnInit {
       });
   }
 
-  getTasks(): void {
+  async getTasks(): Promise<void> {
     const id = Number(this.route.snapshot.paramMap.get('functionalityId'));
-    this.projectService.getTasksForFeature(id)
+    await this.projectService.getTasksForFeature(id)
       .subscribe((response: any) => {
         this.tasks = response;
         console.log(response);
       });
+  }
+
+  deleteTask(id: number): void {
+    this.projectService.deleteTask(id).subscribe(
+      () => {
+        console.log('Usunięto funkcję');
+      },
+      error => {
+        console.error('Wystąpił błąd podczas usuwania funkcji:', error);
+      }
+    );
+    location.reload();
   }
 
   createTask(): void {

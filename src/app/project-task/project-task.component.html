@@ -1,6 +1,7 @@
 <div *ngIf="task">
   <h2>{{ task.name }}</h2>
   <p>{{ task.description }}</p>
-  <!-- Dodaj inne pola szczegółów funkcjonalności -->
+  <p>{{ task.status }}</p>
+  <button (click)="updateStatusTask(task.id,'Done')"> Done </button>
 </div>
 <h2>ssdssd</h2>

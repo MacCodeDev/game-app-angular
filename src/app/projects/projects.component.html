@@ -5,6 +5,7 @@
     <h3>{{ feature.name }}</h3>
     <p>{{ feature.description }}</p>
     <a [routerLink]="['/projects/functionalities', feature.id]">Szczegóły</a>
+    <button (click)="deleteFeature(feature.id)"> Delete </button>
   </li>
 </ul>
 
