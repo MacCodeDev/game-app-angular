@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectAppService } from "../project-app.service";
 import { Router } from '@angular/router';
+import { concatMap, finalize } from 'rxjs/operators';
+import {Observable, of, switchMap, throwError, forkJoin, concat} from 'rxjs';
 
 @Component({
   selector: 'app-projects',
@@ -63,6 +65,43 @@ export class ProjectsComponent implements OnInit{
         );
       }
     );
+  }
+
+
+  // updateStatusFeature(id: number, newStatus: string) {
+  //   this.projectService.getTasksForFeature(id).pipe(
+  //     concatMap((response) => {
+  //       const updateTasks = response.map((task) =>
+  //         this.projectService.updateTaskStatus(task.id, newStatus)
+  //       );
+  //       return forkJoin(updateTasks);
+  //     }),
+  //     concatMap(() => {
+  //       return this.projectService.updateFeatureStatus(id, newStatus);
+  //     }),
+  //     finalize(() => {
+  //       console.log('Pomyślnie zaktualizowano status funkcji');
+  //       //location.reload()
+  //     })
+  //   ).subscribe(
+  //     () => {
+  //       console.log('Pomyślnie zaktualizowano status zadania');
+  //     },
+  //     (error) => {
+  //       console.error('Wystąpił błąd podczas aktualizowania statusu zadania:', error);
+  //     }
+  //   );
+  // }
+
+
+
+  updateStatusFeature(id: number, newStatus: string) {
+    this.projectService.changeFeatureStatus(id, newStatus).subscribe(
+      () => {
+        location.reload();
+    }
+    )
+
   }
 
 

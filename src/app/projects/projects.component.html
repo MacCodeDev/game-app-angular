@@ -4,8 +4,10 @@
   <li *ngFor="let feature of features">
     <h3>{{ feature.name }}</h3>
     <p>{{ feature.description }}</p>
+    <p>{{ feature.status }}</p>
     <a [routerLink]="['/projects/functionalities', feature.id]">Szczegóły</a>
     <button (click)="deleteFeature(feature.id)"> Delete </button>
+    <button (click)="updateStatusFeature(feature.id,'Done')"> Done </button>
   </li>
 </ul>
 
