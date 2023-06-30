@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectAppService } from "../project-app.service";
 import { Router } from '@angular/router';
-import { concatMap, finalize } from 'rxjs/operators';
+import {concatMap, delay, finalize} from 'rxjs/operators';
 import {Observable, of, switchMap, throwError, forkJoin, concat} from 'rxjs';
+import {waitForAngularReady} from "@angular/cdk/testing/selenium-webdriver";
 
 @Component({
   selector: 'app-projects',
@@ -57,7 +58,7 @@ export class ProjectsComponent implements OnInit{
         this.projectService.deleteFeature(id).subscribe(
           () => {
             console.log('Usunięto funkcję');
-            location.reload()
+            location.reload();
           },
           (error) => {
             console.error('Wystąpił błąd podczas usuwania funkcji:', error);
