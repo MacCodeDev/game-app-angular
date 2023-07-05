@@ -1,58 +1,145 @@
-<div *ngIf="feature">
-  <h2>{{ feature.name }}</h2>
-  <p>{{ feature.description }}</p>
-  <!-- Dodaj inne pola szczegółów funkcjonalności -->
+<div id="function-div" class="shadow-sm" *ngIf="feature">
+  <div>
+    <h2>{{ feature.name }}</h2>
+  </div>
+  <p class="right-aligned">{{ feature.description }}</p>
+  <p>{{ feature.priority }}</p>
+  <p>{{ feature.status }}</p>
+  <div id="buttons-feature">
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addTaskModal">Create new Task</button>
+    <button class="btn btn-warning" (click)="backPage()">Back to project</button>
+  </div>
 </div>
 
-<ul>
-  <li *ngFor="let task of tasks">
-    <h3>{{ task.name }}</h3>
-    <p>{{ task.description }}</p>
-    <a [routerLink]="['/projects/functionalities/', feature.id,'task', task.id]">Szczegóły</a>
-    <button (click)="deleteTask(task.id)"> Delete </button>
-  </li>
-</ul>
+<div class="card-container">
+  <div class="card" *ngFor="let task of tasks">
+    <div class="card-body">
+      <h5 class="card-title">{{ task.name }}</h5>
+      <p class="card-text">{{ task.description }}</p>
+      <div class="buttons">
+        <button class="btn btn-success" (click)="taskDetails(task.id)">Details</button>
+        <button class="btn btn-primary" (click)="editTask(task.id)" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
+        <button class="btn btn-danger" (click)="deleteTask(task.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h2>Add New Task</h2>
+<div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form (submit)="createTask()">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addTaskModalLabel">Add new task</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label>
+            Name:
+            <input type="text" [(ngModel)]="newTask.name" name="name" required>
+          </label>
+          <br>
+          <label>
+            Description:
+            <textarea [(ngModel)]="newTask.description" name="description" required></textarea>
+          </label>
+          <br>
+          <label>
+            Priority:
+            <select [(ngModel)]="newTask.priority" name="priority" required>
+              <option value="Niski">Niski</option>
+              <option value="Średni">Średni</option>
+              <option value="Wysoki">Wysoki</option>
+            </select>
+          </label>
+          <br>
+          <label>
+            Planowana data ukończenia:
+            <input type="date" [(ngModel)]="newTask.doneDate" name="doneDate" required>
+          </label>
+          <br>
+          <label>
+            Data utworzenia:
+            <input type="date" [(ngModel)]="newTask.createDate" name="createDate" required>
+          </label>
+          <br>
+          <label>
+            Status:
+            <select [(ngModel)]="newTask.status" name="status" required>
+              <option value="ToDo">ToDo</option>
+              <option value="Doing">Doing</option>
+              <option value="Done">Done</option>
+            </select>
+          </label>
+          <br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
-<form (submit)="createTask()">
-  <label>
-    Name:
-    <input type="text" [(ngModel)]="newTask.name" name="name" required>
-  </label>
-  <br>
-  <label>
-    Description:
-    <textarea [(ngModel)]="newTask.description" name="description" required></textarea>
-  </label>
-  <br>
-  <label>
-    Priority:
-    <select [(ngModel)]="newTask.priority" name="priority" readonly required>
-      <option value="Niski">Niski</option>
-      <option value="Średni">Średni</option>
-      <option value="Wysoki">Wysoki</option>
-    </select>
-  </label>
-  <br>
-  <label>
-    Planowana data ukończenia:
-    <input type="date" [(ngModel)]="newTask.doneDate" name="doneDate"  required>
-  </label>
-  <br>
-  <label>
-    Data utworzenia:
-    <input type="date" [(ngModel)]="newTask.createDate" name="doneDate"  required>
-  </label>
-  <br>
-  <label>
-    Status:
-    <select [(ngModel)]="newTask.status" name="status" readonly required>
-      <option value="ToDo">ToDo</option>
-      <option value="Doing">Doing</option>
-      <option value="Done">Done</option>
-    </select>
-  </label>
-  <br>
-  <button type="submit">Add</button>
-</form>
+<!-- Edit Task Modal -->
+<div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form (submit)="updateTask()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editTaskModalLabel">Edit Task</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <label>
+            Name:
+            <input type="text" [(ngModel)]="editTaskArray.name" name="name" required>
+          </label>
+          <br>
+          <label>
+            Description:
+            <textarea [(ngModel)]="editTaskArray.description" name="description" required></textarea>
+          </label>
+          <br>
+          <label>
+            Priority:
+            <select [(ngModel)]="editTaskArray.priority" name="priority" required>
+              <option value="Niski">Niski</option>
+              <option value="Średni">Średni</option>
+              <option value="Wysoki">Wysoki</option>
+            </select>
+          </label>
+          <br>
+          <label>
+            Planowana data ukończenia:
+            <input type="date" [(ngModel)]="editTaskArray.doneDate" name="doneDate"  required>
+          </label>
+          <br>
+          <label>
+            Data utworzenia:
+            <input type="date" [(ngModel)]="editTaskArray.createDate" name="createDate"  required>
+          </label>
+          <br>
+          <label>
+            Status:
+            <select [(ngModel)]="editTaskArray.status" name="status" required>
+              <option value="ToDo">ToDo</option>
+              <option value="Doing">Doing</option>
+              <option value="Done">Done</option>
+            </select>
+          </label>
+          <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>

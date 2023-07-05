@@ -1,60 +1,23 @@
 {
   "features": [
     {
-      "name": "Analiza",
-      "description": "Analiza całego projektu",
+      "name": "fdgdfg",
+      "description": "dfgfd",
       "priority": "Wysoki",
-      "status": "Doing",
-      "id": 6
-    },
-    {
-      "name": "Pisanie dokumentacji",
-      "description": "Tworzenie dokumentacji",
-      "priority": "Średni",
-      "status": "ToDo",
-      "id": 7
+      "status": "Done",
+      "id": 8
     }
   ],
   "tasks": [
     {
-      "name": "Analiza systemu workflow",
-      "description": "Analiza systemu workflow do automatyzacji",
-      "priority": "Średni",
-      "doneDate": "2023-06-30",
-      "createDate": "2023-07-03",
-      "status": "Doing",
-      "idFeature": 6,
-      "id": 4
-    },
-    {
-      "name": "Dokumentacja As-Is",
-      "description": "Tworzenie dokumentacji As-Is",
-      "priority": "Średni",
-      "doneDate": "2023-07-05",
-      "createDate": "2023-07-09",
-      "status": "ToDo",
-      "idFeature": 7,
-      "id": 5
-    },
-    {
-      "name": "Dokumentacja To-Be",
-      "description": "Tworzenie dokumentacji To-Be",
-      "priority": "Średni",
-      "doneDate": "2023-07-05",
-      "createDate": "2023-07-09",
-      "status": "ToDo",
-      "idFeature": 7,
-      "id": 6
-    },
-    {
-      "name": "Analiza Google Drive",
-      "description": "Analizowanie wprowadzania plików na Google Drive przez API.",
+      "name": "dfgfd",
+      "description": "gdfg",
       "priority": "Wysoki",
-      "doneDate": "2023-07-01",
-      "createDate": "2023-07-03",
+      "doneDate": "2023-07-13",
+      "createDate": "2023-07-14",
       "status": "Doing",
-      "idFeature": 6,
-      "id": 7
+      "idFeature": 8,
+      "id": 14
     }
   ]
 }

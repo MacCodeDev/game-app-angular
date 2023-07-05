@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ProjectAppService } from "../project-app.service";
 
 @Component({
@@ -11,11 +11,14 @@ export class FunctionalitiesComponent implements OnInit {
   feature: any;
   tasks: any[]=[];
   newTask: any = {};
+  editTaskArray: any = {};
   featureID: any;
+  showForm: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private projectService: ProjectAppService
+    private projectService: ProjectAppService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,16 +44,43 @@ export class FunctionalitiesComponent implements OnInit {
       });
   }
 
+  taskDetails(id: number): void {
+    const functionalityId = Number(this.route.snapshot.paramMap.get('functionalityId'));
+    this.router.navigate([`projects/functionalities/${functionalityId}/task/${id}`])
+  }
+
   deleteTask(id: number): void {
     this.projectService.deleteTask(id).subscribe(
       () => {
         console.log('Usunięto funkcję');
+        this.getTasks(); // Reload tasks after one has been deleted
       },
       error => {
         console.error('Wystąpił błąd podczas usuwania funkcji:', error);
       }
     );
-    location.reload();
+  }
+
+  backPage(): void{
+    this.router.navigate(['/projects']);
+  }
+
+  updateTask() {
+    this.projectService.updateTask(this.editTaskArray.id, this.editTaskArray).subscribe(
+      response => {
+        console.log('Task updated successfully', response);
+        this.getTasks();
+      },
+      error => {
+        console.error('There was an error updating the task', error);
+      }
+    );
+  }
+
+  editTask(id: number) {
+    const task= this.tasks.find(f => f.id === id);
+    this.editTaskArray = { ...task };
+    this.showForm = true;
   }
 
   createTask(): void {

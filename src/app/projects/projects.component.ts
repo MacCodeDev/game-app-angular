@@ -13,7 +13,9 @@ import {waitForAngularReady} from "@angular/cdk/testing/selenium-webdriver";
 export class ProjectsComponent implements OnInit{
   features: any[] = [];
   newFeature: any = {};
+  updateFeatureArray: any = {};
   tasks: any[]=[];
+  showForm: boolean = false;
 
   constructor(
     private projectService: ProjectAppService,
@@ -32,17 +34,16 @@ export class ProjectsComponent implements OnInit{
       });
   }
 
-  async deleteTask(id: number): Promise<void> {
-    this.projectService.deleteTask(id).subscribe(
-      () => {
-        console.log('Usunięto funkcję');
-      },
-      error => {
-        console.error('Wystąpił błąd podczas usuwania funkcji:', error);
-      }
-    );
-    //location.reload();
-  }
+  // async deleteTask(id: number): Promise<void> {
+  //   this.projectService.deleteTask(id).subscribe(
+  //     () => {
+  //       console.log('Usunięto funkcję');
+  //     },
+  //     error => {
+  //       console.error('Wystąpił błąd podczas usuwania funkcji:', error);
+  //     }
+  //   );
+  // }
 
   deleteFeature(id: number): void {
     this.projectService.getTasksForFeature(id).subscribe(
@@ -58,7 +59,7 @@ export class ProjectsComponent implements OnInit{
         this.projectService.deleteFeature(id).subscribe(
           () => {
             console.log('Usunięto funkcję');
-            location.reload();
+            this.getFeatures();
           },
           (error) => {
             console.error('Wystąpił błąd podczas usuwania funkcji:', error);
@@ -68,41 +69,31 @@ export class ProjectsComponent implements OnInit{
     );
   }
 
-
-  // updateStatusFeature(id: number, newStatus: string) {
-  //   this.projectService.getTasksForFeature(id).pipe(
-  //     concatMap((response) => {
-  //       const updateTasks = response.map((task) =>
-  //         this.projectService.updateTaskStatus(task.id, newStatus)
-  //       );
-  //       return forkJoin(updateTasks);
-  //     }),
-  //     concatMap(() => {
-  //       return this.projectService.updateFeatureStatus(id, newStatus);
-  //     }),
-  //     finalize(() => {
-  //       console.log('Pomyślnie zaktualizowano status funkcji');
-  //       //location.reload()
-  //     })
-  //   ).subscribe(
-  //     () => {
-  //       console.log('Pomyślnie zaktualizowano status zadania');
-  //     },
-  //     (error) => {
-  //       console.error('Wystąpił błąd podczas aktualizowania statusu zadania:', error);
-  //     }
-  //   );
-  // }
-
-
+  editFeature(id: number) {
+    const feature = this.features.find(f => f.id === id);
+    this.updateFeatureArray = feature;
+    this.showForm = true;
+  }
 
   updateStatusFeature(id: number, newStatus: string) {
     this.projectService.changeFeatureStatus(id, newStatus).subscribe(
       () => {
-        location.reload();
+        this.getFeatures();
     }
     )
 
+  }
+
+  updateFeature() {
+    this.projectService.updateFeature(this.updateFeatureArray.id, this.updateFeatureArray).subscribe(
+      response => {
+        console.log('Feature updated successfully', response);
+        this.getFeatures();
+      },
+      error => {
+        console.error('There was an error updating the feature', error);
+      }
+    );
   }
 
 

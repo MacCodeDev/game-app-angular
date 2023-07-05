@@ -18,6 +18,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { AuthGuard } from './guards/auth.guard';
 import { FunctionalitiesComponent } from './functionalities/functionalities.component';
 import { ProjectTaskComponent } from './project-task/project-task.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProjectTaskComponent } from './project-task/project-task.component';
     RegistrationComponent,
     ProjectsComponent,
     FunctionalitiesComponent,
-    ProjectTaskComponent
+    ProjectTaskComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

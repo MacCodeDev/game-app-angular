@@ -18,13 +18,14 @@ export class AuthGuard implements CanActivate {
 
     if (isLoggedIn) {
       return true;
-    } else {
-      await this.router.navigate(['']);
+    }
+    else {
+      await this.router.navigate(['/']);
       return false;
     }
   }
 
-  private checkLoginStatus(): boolean {
+ checkLoginStatus(): boolean {
     const expectedUsername = 'Admin';
     const expectedPassword = 'Wsei123';
 
@@ -40,5 +41,9 @@ export class AuthGuard implements CanActivate {
     }
 
     return false;
+  }
+
+  isLoggedIn(): boolean {
+    return this.checkLoginStatus();
   }
 }

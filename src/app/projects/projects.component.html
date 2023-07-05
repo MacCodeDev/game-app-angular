@@ -8,6 +8,7 @@
     <a [routerLink]="['/projects/functionalities', feature.id]">Szczegóły</a>
     <button (click)="deleteFeature(feature.id)"> Delete </button>
     <button (click)="updateStatusFeature(feature.id,'Done')"> Done </button>
+    <button (click)="editFeature(feature.id)">Edit</button>
   </li>
 </ul>
 
@@ -44,3 +45,39 @@
   <br>
   <button type="submit">Add</button>
 </form>
+
+<div *ngIf="showForm">
+  <h2>Update Feature</h2>
+
+  <form (submit)="updateFeature()">
+    <label>
+      Name:
+      <input type="text" [(ngModel)]="updateFeatureArray.name" name="name" required>
+    </label>
+    <br>
+    <label>
+      Description:
+      <textarea [(ngModel)]="updateFeatureArray.description" name="description" required></textarea>
+    </label>
+    <br>
+    <label>
+      Priority:
+      <select [(ngModel)]="updateFeatureArray.priority" name="priority" readonly required>
+        <option value="Niski">Niski</option>
+        <option value="Średni">Średni</option>
+        <option value="Wysoki">Wysoki</option>
+      </select>
+    </label>
+    <br>
+    <label>
+      Status:
+      <select [(ngModel)]="updateFeatureArray.status" name="status" readonly required>
+        <option value="ToDo">ToDo</option>
+        <option value="Doing">Doing</option>
+        <option value="Done">Done</option>
+      </select>
+    </label>
+    <br>
+    <button type="submit">Accept changes</button>
+  </form>
+</div>
