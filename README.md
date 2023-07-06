@@ -25,3 +25,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Run Json Server
+
+To download the server json you must first download it through the console using the command: `npm install -g json-server`.
+Then in order to start such a server, you need to enter the command in the term: `json-server --watch db.json`.
