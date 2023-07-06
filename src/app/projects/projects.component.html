@@ -1,83 +1,137 @@
-<h2>List of Features</h2>
+<div id="project-div" class="shadow-sm">
+  <div>
+    <h2>Project One</h2>
+  </div>
+  <div class="shadow-lg p-3 mb-5 bg-white rounded" id="column-box">
+    <div id="column-left" class="border border-dark rounded">
+      <h4>Create date:</h4>
+      <p>2023-04-25</p>
+    </div>
+    <div id="column-right" class="border border-dark rounded">
+      <h4>Description:</h4>
+      <p>"Project One" is an innovative venture aimed at integrating blockchain technology into the energy industry. Its main goal is to create a decentralized energy network that enables direct energy exchange between producers and consumers, eliminating the need for the intermediation of large corporations.</p>
+    </div>
+  </div>
+  <div id="buttons-feature">
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addFeatureModal">Create new Feature</button>
+  </div>
+</div>
 
-<ul>
-  <li *ngFor="let feature of features">
-    <h3>{{ feature.name }}</h3>
-    <p>{{ feature.description }}</p>
-    <p>{{ feature.status }}</p>
-    <a [routerLink]="['/projects/functionalities', feature.id]">Szczegóły</a>
-    <button (click)="deleteFeature(feature.id)"> Delete </button>
-    <button (click)="updateStatusFeature(feature.id,'Done')"> Done </button>
-    <button (click)="editFeature(feature.id)">Edit</button>
-  </li>
-</ul>
 
-<h2>Add New Feature</h2>
+<div id="text-list">
+  <h3>List of Features:</h3>
+</div>
 
-<form (submit)="addFeature()">
-  <label>
-    Name:
-    <input type="text" [(ngModel)]="newFeature.name" name="name" required>
-  </label>
-  <br>
-  <label>
-    Description:
-    <textarea [(ngModel)]="newFeature.description" name="description" required></textarea>
-  </label>
-  <br>
-  <label>
-    Priority:
-    <select [(ngModel)]="newFeature.priority" name="priority" readonly required>
-      <option value="Niski">Niski</option>
-      <option value="Średni">Średni</option>
-      <option value="Wysoki">Wysoki</option>
-    </select>
-  </label>
-  <br>
-  <label>
-    Status:
-    <select [(ngModel)]="newFeature.status" name="status" readonly required>
-      <option value="ToDo">ToDo</option>
-      <option value="Doing">Doing</option>
-      <option value="Done">Done</option>
-    </select>
-  </label>
-  <br>
-  <button type="submit">Add</button>
-</form>
+<div class="card-container">
+  <div class="card" *ngFor="let feature of features">
+    <div class="card-body">
+      <h5 class="card-title">{{ feature.name }}</h5>
+      <p class="card-text">{{ feature.description }}</p>
+      <p>{{ feature.status }}</p>
+      <div class="buttons">
+        <button class="btn btn-success" (click)="featureDetails(feature.id)"> Details </button>
+        <button class="btn btn-danger" (click)="deleteFeature(feature.id)"> Delete </button>
+        <button class="btn btn-success" (click)="updateStatusFeature(feature.id,'Done')"> Done </button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFeatureModal">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div *ngIf="showForm">
-  <h2>Update Feature</h2>
+<div class="modal fade" id="addFeatureModal" tabindex="-1" role="dialog" aria-labelledby="addFeatureModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form (submit)="addFeature()">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addFeatureModalLabel">Add new task</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label>
+            Name:
+            <input type="text" [(ngModel)]="newFeature.name" name="name" required>
+          </label>
+          <br>
+          <label>
+            Description:
+            <textarea [(ngModel)]="newFeature.description" name="description" maxlength="500" rows="7" required></textarea>
+          </label>
+          <br>
+          <label>
+            Priority:
+            <select [(ngModel)]="newFeature.priority" name="priority" readonly required>
+              <option value="Niski">Niski</option>
+              <option value="Średni">Średni</option>
+              <option value="Wysoki">Wysoki</option>
+            </select>
+          </label>
+          <br>
+          <label>
+            Status:
+            <select [(ngModel)]="newFeature.status" name="status" readonly required>
+              <option value="ToDo">ToDo</option>
+              <option value="Doing">Doing</option>
+              <option value="Done">Done</option>
+            </select>
+          </label>
+          <br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
-  <form (submit)="updateFeature()">
-    <label>
-      Name:
-      <input type="text" [(ngModel)]="updateFeatureArray.name" name="name" required>
-    </label>
-    <br>
-    <label>
-      Description:
-      <textarea [(ngModel)]="updateFeatureArray.description" name="description" required></textarea>
-    </label>
-    <br>
-    <label>
-      Priority:
-      <select [(ngModel)]="updateFeatureArray.priority" name="priority" readonly required>
-        <option value="Niski">Niski</option>
-        <option value="Średni">Średni</option>
-        <option value="Wysoki">Wysoki</option>
-      </select>
-    </label>
-    <br>
-    <label>
-      Status:
-      <select [(ngModel)]="updateFeatureArray.status" name="status" readonly required>
-        <option value="ToDo">ToDo</option>
-        <option value="Doing">Doing</option>
-        <option value="Done">Done</option>
-      </select>
-    </label>
-    <br>
-    <button type="submit">Accept changes</button>
-  </form>
+<div class="modal fade" id="editFeatureModal" tabindex="-1" role="dialog" aria-labelledby="editFeatureModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form (submit)="updateFeature()">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editFeatureModalLabel">Edit Task</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <label>
+          Name:
+          <input type="text" [(ngModel)]="updateFeatureArray.name" name="name" required>
+        </label>
+        <br>
+        <label>
+          Description:
+          <textarea [(ngModel)]="updateFeatureArray.description" name="description" maxlength="500" rows="7" required></textarea>
+        </label>
+        <br>
+        <label>
+          Priority:
+          <select [(ngModel)]="updateFeatureArray.priority" name="priority" readonly required>
+            <option value="Niski">Niski</option>
+            <option value="Średni">Średni</option>
+            <option value="Wysoki">Wysoki</option>
+          </select>
+        </label>
+        <br>
+        <label>
+          Status:
+          <select [(ngModel)]="updateFeatureArray.status" name="status" readonly required>
+            <option value="ToDo">ToDo</option>
+            <option value="Doing">Doing</option>
+            <option value="Done">Done</option>
+          </select>
+        </label>
+        <br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

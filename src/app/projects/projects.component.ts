@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectAppService } from "../project-app.service";
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {concatMap, delay, finalize} from 'rxjs/operators';
 import {Observable, of, switchMap, throwError, forkJoin, concat} from 'rxjs';
 import {waitForAngularReady} from "@angular/cdk/testing/selenium-webdriver";
@@ -18,6 +18,7 @@ export class ProjectsComponent implements OnInit{
   showForm: boolean = false;
 
   constructor(
+    private route: ActivatedRoute,
     private projectService: ProjectAppService,
     private router: Router
   ) { }
@@ -82,6 +83,10 @@ export class ProjectsComponent implements OnInit{
     }
     )
 
+  }
+
+  featureDetails(id: number): void {
+    this.router.navigate([`projects/functionalities/${id}`])
   }
 
   updateFeature() {
