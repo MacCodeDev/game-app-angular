@@ -1,8 +1,27 @@
-<div *ngIf="task">
-  <h2>{{ task.name }}</h2>
-  <p>{{ task.description }}</p>
-  <p>{{ task.status }}</p>
-  <button (click)="updateStatusTask(task.id,'Done')"> Done </button>
-  <button (click)="deleteTask(task.id)"> Delete </button>
+<div id="task-div" class="shadow-sm" *ngIf="task">
+  <div>
+    <h2>{{ task.name }}</h2>
+  </div>
+  <div class="shadow-lg p-3 mb-5 bg-white rounded" id="column-box">
+    <div id="column-left" class="border border-dark rounded">
+      <h4>Status:</h4>
+      <p>{{ task.status }}</p>
+      <h4>Priority:</h4>
+      <p>{{ task.priority }}</p>
+      <h4>Create date:</h4>
+      <p>{{ task.createDate }}</p>
+      <h4>Expected completion date:</h4>
+      <p>{{ task.doneDate }}</p>
+    </div>
+    <div id="column-right" class="border border-dark rounded">
+      <h4>Description:</h4>
+      <p>{{ task.description }}</p>
+    </div>
+  </div>
+  <div id="buttons-feature">
+    <button class="btn btn-success" (click)="updateStatusTask(task.id,'Done')"> Done </button>
+    <button class="btn btn-danger" (click)="deleteTask(task.id)"> Delete </button>
+    <button class="btn btn-warning" (click)="backPage()"> Back to feature </button>
+  </div>
 </div>
-<h2>ssdssd</h2>
+

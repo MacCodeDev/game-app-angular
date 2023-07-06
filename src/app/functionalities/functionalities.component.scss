@@ -75,6 +75,7 @@ form {
 
   #buttons-feature {
     margin-left: auto;
+    margin-top: 0px;
 
     button {
       color: #ffffff;
@@ -91,4 +92,70 @@ form {
   }
 }
 
+#text-list {
+  h3 {
+    margin-top: 15px;
+    margin-left: 5px;
+  }
+}
 
+#column-box {
+  width: 70%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 25% 2px 75%;
+  align-items: stretch;
+}
+
+#column-left {
+  grid-column: 1;
+}
+
+#column-right {
+  grid-column: 3;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+#column-box::after {
+  content: "";
+  grid-column: 2;
+  background: #000;
+}
+
+form {
+  input, textarea, select {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    margin: 10px 0;
+
+    &:focus {
+      color: #495057;
+      background-color: #fff;
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+    }
+
+  }
+
+  label {
+    display: inline-block;
+    margin-bottom: .5rem;
+  }
+}
+
+#addTaskModal textarea, #editTaskModal textarea {
+  resize: none;
+  width: 100%;
+  height: 190px;
+}

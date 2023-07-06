@@ -24,9 +24,7 @@ export class ProjectTaskComponent implements OnInit {
 
   async getTask(): Promise<void> {
     const functionalityId = Number(this.route.snapshot.paramMap.get('functionalityId'));
-    console.log(functionalityId);
     const taskId = Number(this.route.snapshot.paramMap.get('taskId'));
-    console.log(taskId);
     await (await this.projectService.getTaskForFeature(functionalityId, taskId))
       .subscribe((response: any) => {
         this.task = response;
@@ -57,6 +55,10 @@ export class ProjectTaskComponent implements OnInit {
         console.error('Wystąpił błąd podczas usuwania zadania:', error);
       }
     );
+  }
+  backPage(): void{
+    const functionalityId = Number(this.route.snapshot.paramMap.get('functionalityId'));
+    this.router.navigate([`projects/functionalities/${functionalityId}`]);
   }
 }
 

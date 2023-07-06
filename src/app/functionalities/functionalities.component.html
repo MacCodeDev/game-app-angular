@@ -1,14 +1,29 @@
-<div id="function-div" class="shadow-sm" *ngIf="feature">
+<div id="function-div"
+     class="shadow-sm"
+     *ngIf="feature">
   <div>
     <h2>{{ feature.name }}</h2>
   </div>
-  <p class="right-aligned">{{ feature.description }}</p>
-  <p>{{ feature.priority }}</p>
-  <p>{{ feature.status }}</p>
+  <div class="shadow-lg p-3 mb-5 bg-white rounded" id="column-box">
+    <div id="column-left" class="border border-dark rounded">
+      <h4>Priority:</h4>
+      <p>{{ feature.priority }}</p>
+      <h4>Status:</h4>
+      <p>{{ feature.status }}</p>
+    </div>
+    <div id="column-right" class="border border-dark rounded">
+      <h4>Description:</h4>
+      <p>{{ feature.description }}</p>
+    </div>
+  </div>
   <div id="buttons-feature">
     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addTaskModal">Create new Task</button>
     <button class="btn btn-warning" (click)="backPage()">Back to project</button>
   </div>
+</div>
+
+<div id="text-list">
+  <h3>Tasks list:</h3>
 </div>
 
 <div class="card-container">
@@ -43,7 +58,7 @@
           <br>
           <label>
             Description:
-            <textarea [(ngModel)]="newTask.description" name="description" required></textarea>
+            <textarea [(ngModel)]="newTask.description" name="description" maxlength="500" required></textarea>
           </label>
           <br>
           <label>
@@ -103,7 +118,7 @@
           <br>
           <label>
             Description:
-            <textarea [(ngModel)]="editTaskArray.description" name="description" required></textarea>
+            <textarea [(ngModel)]="editTaskArray.description" name="description" maxlength="500" rows="7" required></textarea>
           </label>
           <br>
           <label>

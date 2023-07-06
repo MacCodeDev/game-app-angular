@@ -1,23 +1,40 @@
 {
   "features": [
     {
-      "name": "fdgdfg",
-      "description": "dfgfd",
+      "name": "Analiza",
+      "description": "Analiza całego projektu",
       "priority": "Wysoki",
+      "status": "Doing",
+      "id": 6
+    },
+    {
+      "name": "Pisanie dokumentacji",
+      "description": "Tworzenie dokumentacji",
+      "priority": "Średni",
       "status": "Done",
-      "id": 8
+      "id": 7
     }
   ],
   "tasks": [
     {
-      "name": "dfgfd",
-      "description": "gdfg",
-      "priority": "Wysoki",
-      "doneDate": "2023-07-13",
-      "createDate": "2023-07-14",
-      "status": "Doing",
-      "idFeature": 8,
-      "id": 14
+      "name": "Dokumentacja As-Is",
+      "description": "Tworzenie dokumentacji As-Is",
+      "priority": "Średni",
+      "doneDate": "2023-07-05",
+      "createDate": "2023-07-09",
+      "status": "Done",
+      "idFeature": 7,
+      "id": 5
+    },
+    {
+      "name": "Dokumentacja To-Be",
+      "description": "Tworzenie dokumentacji To-Be",
+      "priority": "Średni",
+      "doneDate": "2023-07-05",
+      "createDate": "2023-07-09",
+      "status": "Done",
+      "idFeature": 7,
+      "id": 6
     }
   ]
 }
