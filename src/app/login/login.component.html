@@ -11,5 +11,9 @@
       </mat-form-field>
       <button mat-raised-button color="warn" type="submit">Login</button>
     </form>
+    <div align="center" *ngIf="check">
+      <h4>Invalid username or password</h4>
+    </div>
   </mat-card>
 </div>
+

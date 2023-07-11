@@ -14,6 +14,7 @@ interface User {
 export class LoginComponent {
   username!: string;
   password!: string;
+  check: boolean = false;
 
   constructor(private router: Router) {}
 
@@ -26,8 +27,8 @@ export class LoginComponent {
     if (this.username === adminUser.username && this.password === adminUser.password) {
       sessionStorage.setItem('currentUser', JSON.stringify(adminUser));
       await this.router.navigate(['/projects'])
-      console.log('TEST')
     } else {
+      this.check = true;
       console.log('Invalid username or password');
     }
   }
