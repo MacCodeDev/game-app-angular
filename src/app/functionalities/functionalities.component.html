@@ -30,7 +30,9 @@
   <div class="card" *ngFor="let task of tasks">
     <div class="card-body">
       <h5 class="card-title">{{ task.name }}</h5>
-      <p class="card-text">{{ task.description }}</p>
+      <p class="card-text">{{ task.description }} </p>
+      <p class="card-text">Status: <b>{{ task.status }}</b> </p>
+      <p class="card-text">Priority: <b>{{ task.priority }}</b></p>
       <div class="buttons">
         <button class="btn btn-success" (click)="taskDetails(task.id)">Details</button>
         <button class="btn btn-primary" (click)="editTask(task.id)" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
@@ -64,19 +66,19 @@
           <label>
             Priority:
             <select [(ngModel)]="newTask.priority" name="priority" required>
-              <option value="Niski">Niski</option>
-              <option value="Średni">Średni</option>
-              <option value="Wysoki">Wysoki</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
           </label>
           <br>
           <label>
-            Planowana data ukończenia:
+            Expected completion date:
             <input type="date" [(ngModel)]="newTask.doneDate" name="doneDate" required>
           </label>
           <br>
           <label>
-            Data utworzenia:
+            Create date:
             <input type="date" [(ngModel)]="newTask.createDate" name="createDate" required>
           </label>
           <br>
@@ -124,9 +126,9 @@
           <label>
             Priority:
             <select [(ngModel)]="editTaskArray.priority" name="priority" required>
-              <option value="Niski">Niski</option>
-              <option value="Średni">Średni</option>
-              <option value="Wysoki">Wysoki</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
           </label>
           <br>

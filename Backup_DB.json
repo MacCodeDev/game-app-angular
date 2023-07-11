@@ -3,14 +3,14 @@
     {
       "name": "Analiza",
       "description": "Analiza całego projektu",
-      "priority": "Wysoki",
+      "priority": "High",
       "status": "Doing",
       "id": 6
     },
     {
       "name": "Pisanie dokumentacji",
       "description": "Tworzenie dokumentacji",
-      "priority": "Średni",
+      "priority": "Medium",
       "status": "ToDo",
       "id": 7
     }
@@ -19,7 +19,7 @@
     {
       "name": "Analiza systemu workflow",
       "description": "Analiza systemu workflow do automatyzacji",
-      "priority": "Średni",
+      "priority": "Medium",
       "doneDate": "2023-06-30",
       "createDate": "2023-07-03",
       "status": "Doing",
@@ -29,7 +29,7 @@
     {
       "name": "Dokumentacja As-Is",
       "description": "Tworzenie dokumentacji As-Is",
-      "priority": "Średni",
+      "priority": "Medium",
       "doneDate": "2023-07-05",
       "createDate": "2023-07-09",
       "status": "ToDo",
@@ -39,7 +39,7 @@
     {
       "name": "Dokumentacja To-Be",
       "description": "Tworzenie dokumentacji To-Be",
-      "priority": "Średni",
+      "priority": "Medium",
       "doneDate": "2023-07-05",
       "createDate": "2023-07-09",
       "status": "ToDo",
@@ -49,7 +49,7 @@
     {
       "name": "Analiza Google Drive",
       "description": "Analizowanie wprowadzania plików na Google Drive przez API.",
-      "priority": "Wysoki",
+      "priority": "Medium",
       "doneDate": "2023-07-01",
       "createDate": "2023-07-03",
       "status": "Doing",

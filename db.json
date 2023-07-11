@@ -1,37 +1,60 @@
 {
   "features": [
     {
+      "name": "Analiza",
+      "description": "Analiza całego projektu",
+      "priority": "High",
+      "status": "Doing",
+      "id": 6
+    },
+    {
       "name": "Pisanie dokumentacji",
       "description": "Tworzenie dokumentacji",
-      "priority": "Średni",
+      "priority": "Medium",
       "status": "Done",
       "id": 7
-    },
-    {
-      "name": "fsdfds",
-      "description": "fdsfdsfdsfdsfsdfsdfdsfdsfdsfdsfdsfds",
-      "priority": "Średni",
-      "status": "Done",
-      "id": 9
-    },
-    {
-      "description": "jngvjkdfnsjnjkgnjksngjkdsnjgsdnjgndsjkgdjskgdnsjgneuneonsioniosnopgnosbapgnagpaneuanpnvapgbadfcvn auvauoehvnoufbvaosuphvoapofhsduofphaofhuaerhvbauip afvuidpfhaiueivudagfuiegaiufgo",
-      "name": "fdsfdsfdsf",
-      "priority": "Średni",
-      "status": "Doing",
-      "id": 10
     }
   ],
   "tasks": [
     {
-      "name": "Dokumentacja To-Be",
-      "description": "Tworzenie dokumentacji To-Be",
-      "priority": "Średni",
+      "name": "Analiza systemu workflow",
+      "description": "Analiza systemu workflow do automatyzacji",
+      "priority": "Medium",
+      "doneDate": "2023-06-30",
+      "createDate": "2023-07-03",
+      "status": "Done",
+      "idFeature": 6,
+      "id": 4
+    },
+    {
+      "name": "Dokumentacja As-Is",
+      "description": "Tworzenie dokumentacji As-Is",
+      "priority": "Medium",
       "doneDate": "2023-07-05",
       "createDate": "2023-07-09",
-      "status": "Doing",
+      "status": "Done",
+      "idFeature": 7,
+      "id": 5
+    },
+    {
+      "name": "Dokumentacja To-Be",
+      "description": "Tworzenie dokumentacji To-Be",
+      "priority": "Medium",
+      "doneDate": "2023-07-05",
+      "createDate": "2023-07-09",
+      "status": "Done",
       "idFeature": 7,
       "id": 6
+    },
+    {
+      "name": "Analiza Google Drive",
+      "description": "Analizowanie wprowadzania plików na Google Drive przez API.",
+      "priority": "High",
+      "doneDate": "2023-07-01",
+      "createDate": "2023-07-03",
+      "status": "Done",
+      "idFeature": 6,
+      "id": 7
     }
   ]
 }

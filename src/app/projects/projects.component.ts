@@ -73,7 +73,7 @@ export class ProjectsComponent implements OnInit{
   editFeature(id: number) {
     const feature = this.features.find(f => f.id === id);
     this.updateFeatureArray = feature;
-    this.showForm = true;
+    //this.showForm = true;
   }
 
   updateStatusFeature(id: number, newStatus: string) {

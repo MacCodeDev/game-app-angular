@@ -27,12 +27,12 @@
     <div class="card-body">
       <h5 class="card-title">{{ feature.name }}</h5>
       <p class="card-text">{{ feature.description }}</p>
-      <p>{{ feature.status }}</p>
+      <p class="card-text">Status: <b>{{ feature.status }}</b></p>
       <div class="buttons">
         <button class="btn btn-success" (click)="featureDetails(feature.id)"> Details </button>
         <button class="btn btn-danger" (click)="deleteFeature(feature.id)"> Delete </button>
         <button class="btn btn-success" (click)="updateStatusFeature(feature.id,'Done')"> Done </button>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFeatureModal">Edit</button>
+        <button class="btn btn-primary" (click)="editFeature(feature.id)"  data-bs-toggle="modal" data-bs-target="#editFeatureModal">Edit</button>
       </div>
     </div>
   </div>
@@ -62,9 +62,9 @@
           <label>
             Priority:
             <select [(ngModel)]="newFeature.priority" name="priority" readonly required>
-              <option value="Niski">Niski</option>
-              <option value="Średni">Średni</option>
-              <option value="Wysoki">Wysoki</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
           </label>
           <br>
@@ -111,9 +111,9 @@
         <label>
           Priority:
           <select [(ngModel)]="updateFeatureArray.priority" name="priority" readonly required>
-            <option value="Niski">Niski</option>
-            <option value="Średni">Średni</option>
-            <option value="Wysoki">Wysoki</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
           </select>
         </label>
         <br>
